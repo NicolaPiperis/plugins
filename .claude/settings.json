@@ -1,0 +1,19 @@
+{
+  "enabledPlugins": {
+    "saba-maintainer@saba-plugin": false
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit|Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/writing-for-the-brigade-guard.sh\"",
+            "shell": "bash"
+          }
+        ]
+      }
+    ]
+  }
+}

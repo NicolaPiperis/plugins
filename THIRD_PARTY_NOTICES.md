@@ -6,7 +6,7 @@ The following file is copied unchanged from [mattpocock/skills](https://github.c
 
 - `plugins/mise-en-place/skills/grilling/SKILL.md`
 
-The following files are copied from `codebase-design` in the same repository, with only the skill's name and title changed, and the glossary pointed at the pantry's Terms:
+The following files are copied from `codebase-design` in the same repository, with only the skill's name and title changed, and the glossary pointed at the pantry's glossary:
 
 - `plugins/mise-en-place/skills/partie/SKILL.md`
 - `plugins/mise-en-place/skills/partie/DEEPENING.md`
@@ -47,11 +47,11 @@ The following file takes its tests and its list of what qualifies from `domain-m
 
 - `plugins/mise-en-place/skills/restock/WHEN-A-DECISION.md`
 
-The following files contain passages from the same repository: `grill-with-docs` (the description), `setup-matt-pocock-skills/domain.md` (the rules for using the vocabulary, proceeding silently and flagging contradicted decisions) and `domain-modeling/GLOSSARY-FORMAT.md` (the rules for writing terms):
+The following files contain passages from the same repository: `grill-with-docs` (the description), `setup-matt-pocock-skills/domain.md` (the rules for using the vocabulary, proceeding silently and flagging contradicted decisions) and `domain-modeling/GLOSSARY-FORMAT.md` (the rules for writing terms, now in the glossary template):
 
 - `plugins/mise-en-place/skills/grill-from-pantry/SKILL.md`
 - `plugins/mise-en-place/skills/inventory/SKILL.md`
-- `plugins/mise-en-place/skills/setup-pantry/seed/config/templates/docs/overview.md`
+- `plugins/mise-en-place/skills/setup-pantry/seed/config/templates/docs/glossary.md`
 
 The following file takes its sections and their guidance from the spec template of `to-spec` in the same repository, with two sections added (Threat Model, Estimate):
 

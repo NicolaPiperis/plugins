@@ -1,6 +1,6 @@
 ---
 name: grill
-description: A relentless interview to sharpen a plan or design.
+description: Interview the user relentlessly to sharpen a plan or design.
 disable-model-invocation: true
 ---
 

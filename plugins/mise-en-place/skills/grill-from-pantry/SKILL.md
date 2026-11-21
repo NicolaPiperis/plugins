@@ -1,6 +1,6 @@
 ---
 name: grill-from-pantry
-description: A relentless interview to sharpen a plan or design, which also writes to the pantry (terms and decisions) as we go.
+description: Interview the user relentlessly to sharpen a plan or design, writing to the pantry (terms and decisions) as we go.
 disable-model-invocation: true
 ---
 
@@ -18,6 +18,18 @@ Before the first round, ask once whether the work is a ticket (recommended: **ye
 - **Not a ticket**: grill the design as the user states it.
 
 Done when the request the grill starts from is settled: the order read, the order written, or the design stated.
+
+## An order designed with take-order
+
+An order with an `## Origin` section was designed with `take-order`: its Functional Decisions stand as settled. The mockups and research files in the ticket's folder are part of it: read them before the first round, since a rule the text leaves out often shows only there. The interview works on:
+
+- the Implementation Decisions: the points the design left to the developer;
+- the facts the decisions stand on, listed in Further Notes: verify each again in the code on the branch the work starts from, beginning with the research files. A fact that proves wrong reopens the decisions tied to it: they go back to whoever designed the order, and the others stand;
+- a functional point the order leaves open: it joins the questions, and the user settles it or keeps it for the designer;
+- the candidates for the pantry in Further Notes: offer each to `restock`, as `menu` says, once the facts it stands on are verified;
+- the threats and the seams, as below.
+
+An order without Origin is interviewed whole.
 
 ## Established facts
 
@@ -37,7 +49,7 @@ Once the rest of the design is settled, call the Skill tool with "mise-en-place:
 
 ## Last, the seams
 
-Once everything else is settled, the threats included, decide **where this will be tested**: the seams that will host its functional and security tests. Prefer a seam that already exists, take the highest one, and the fewest possible: one is the ideal number. Propose only the kinds of test the project's `rules.md` allows; with no rule on it, none is excluded. The seam vocabulary is `partie`'s.
+Once everything else is settled, the threats included, decide **where this will be tested**: the seams that will host its functional and security tests. Prefer a seam that already exists, take the highest one, and the fewest possible: one is the ideal number. Propose only the kinds of test the project's `rules/general.md` allows; with no rule on it, none is excluded. The seam vocabulary is `partie`'s.
 
 A seam where a test would pass **without catching the real defect** is not a seam. Awkward seams in old code are fine; the one that matters is the one that would give false confidence. Where that is all there is, offer `/deep-clean`, which redesigns the seam before the recipe is written. Offer it, never impose it: the answer may be that there is no time, and then the choice is a weaker seam or no test. If the user accepts, they type the command themselves: it cannot be invoked from here.
 

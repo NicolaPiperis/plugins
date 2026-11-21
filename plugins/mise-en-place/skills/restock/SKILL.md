@@ -15,7 +15,7 @@ You are the gatekeeper of what the pantry knows: entries, level documents, codin
 
 ## 1. Find the pantry
 
-The pointer, `~/.claude/brigade.yaml`, names the pantry under `pantry`. With no pointer, or a pointer naming a folder without `pantry.yaml`, stop and tell the user to run `/setup-pantry`.
+Find the active pantry through `locate-stations`.
 
 ## 2. The vocabularies
 
@@ -31,7 +31,7 @@ Four vocabularies in `config/vocabulary/` fix the names. Read the ones your writ
 What the files do not say themselves:
 
 - **Technical speaks of codebases, docs and tickets speak of products.** A gotcha lives in one project's code; a manual covers a product as a whole. The same word may appear in both: same entity, two angles.
-- **A topology file is a vocabulary of names, not a map of the code**: that is `structure.md`. It comes into existence with the first entry that needs it.
+- **A topology file is a vocabulary of names, not a map of the code**: the code itself is that map. It comes into existence with the first entry that needs it.
 - **A tag is a technical subject**: never a module, never a business domain. Those are already said by the project, the product and the path.
 
 ## 3. What goes where
@@ -49,14 +49,14 @@ Three **entry types**, each a file `{type}-{slug}.md` in its own folder:
 | File | Where | What it holds |
 |---|---|---|
 | `map.md` | every level | the index of the level, one line per entry |
-| `structure.md` | module | how the module is built |
-| `rules.md` | project | the project's coding rules |
+| `rules/general.md` | project | the project's coding rules |
+| `rules/design-system.md` | project with an interface | the interface rules |
 
 A level document is updated whenever the level it describes changes. The test is whether it still matches reality: a change that does not alter how the thing works leaves nothing to update.
 
-**The docs area has no entries**: every node carries a level document, `overview.md` for product, module and feature, `topics/{topic}/topic.md` for a topic. It says what each feature does, its rules and the settings that change it, in the user's words: classes, tables and code paths stay in technical. The words of the domain are fixed in the overviews' `## Terms`; the rest of docs uses them.
+**The docs area has no entries**: every node carries a level document, `overview.md` for product, module and feature, `topics/{topic}/topic.md` for a topic. It says what each feature does, its rules and the settings that change it, in the user's words: classes, tables and code paths stay in technical. The words of the domain are fixed in the product's `glossary.md`, which `menu` keeps; the rest of docs uses them.
 
-A coding rule (*"every component extends `BaseComponent`"*) goes in `rules.md`: entries describe the system, rules are what the code must comply with. What the user sees goes in docs.
+A coding rule (*"every component extends `BaseComponent`"*) goes in `rules/`: entries describe the system, rules are what the code must comply with. What the user sees goes in docs.
 
 ## 4. Writing an entry
 
@@ -68,7 +68,7 @@ Fill the frontmatter down to your `level` and remove the lines below it. **The b
 2. **Propose the tags** the entry actually deals with, from `tags.yaml`. A subject that deserves a tag of its own is registered first (section 7); otherwise the field stays empty.
 3. **Write the map line as a decision aid.** Title and summary together are what a future reader decides on. The title carries the rule, the summary carries **when it bites**: what breaks, on which path, under what condition. The test: would a colleague working on another feature know, from this line alone, whether it concerns them?
 4. **Show the entry whole before writing it**, exactly as it will be saved: frontmatter, title, body and map line. Say how each claim is known, and wait for the user's go.
-5. **Write it**, then update the level's `map.md`, and those above it if the entry is promoted. Update `structure.md` wherever what you wrote makes it no longer match reality.
+5. **Write it**, then update the level's `map.md`, and those above it if the entry is promoted.
 
 Done when the entry and its map line are saved exactly as the user approved them.
 
@@ -95,11 +95,11 @@ For scale, not as a ceiling: a gotcha runs about 240 words, a decision 300, a pa
 
 ## 5. Writing a coding rule
 
-A coding rule goes in the project's `rules.md`, one rule per bullet under a topic heading. When you create the file, link it under `## Structure` in the project's `map.md`.
+A coding rule goes in the project's `rules/`, one per `##`: in `design-system.md` when it is about the interface (components, layout, styles, on-screen text), in `general.md` otherwise. Their template says how to write one. When you create one of the two files, link it under `## Rules` in the project's `map.md`.
 
 ## 6. Creating a new level
 
-When the first entry of a level not yet in `core/` is written, or on request, create its skeleton: the missing `map.md` files along the chain down to that level, plus `structure.md` when the level is a module. Confirm before creating it.
+When the first entry of a level not yet in `core/` is written, or on request, create its skeleton: the missing `map.md` files along the chain down to that level. Confirm before creating it.
 
 ## 7. Registering a vocabulary name
 

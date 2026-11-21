@@ -11,7 +11,7 @@ The pantry is not only a source of truth: it is the **operating guide** you work
 
 ## 1. Find the pantry
 
-The pointer, `~/.claude/brigade.yaml`, names the pantry under `pantry`. With no pointer, or a pointer naming a folder without `pantry.yaml`, stop and tell the user to run `/setup-pantry`.
+Find the active pantry through `locate-stations`.
 
 Then read the pantry's `README.md`: it describes the areas, the levels, the entry types and the level documents. Done when you know the chain of levels that leads to your point.
 
@@ -22,13 +22,13 @@ Locate the point you work on (project → module → feature) and read its chain
 **Read the index of every node in the chain, top-down, from the highest node down to yours. Skip nothing.**
 
 - In technical the index is `map.md`: a one-line summary of every entry at its level, so the whole chain in maps costs a fraction of a single level read in full.
-- In docs it is `overview.md`, read whole. Its `## Terms` are the domain's vocabulary.
+- In docs it is `overview.md`, read whole.
 
-When your output names a domain concept (in an issue title, a refactor proposal, a hypothesis, a test name), use the term as defined in the Terms. Don't drift to synonyms the Terms explicitly avoid. If the concept you need isn't in the Terms yet, that's a signal: either you're inventing language the project doesn't use (reconsider) or there's a real gap (note it for `menu`).
+**The product's `glossary.md` is read whole**, whatever the point: it is the domain's vocabulary. When your output names a domain concept (in an issue title, a refactor proposal, a hypothesis, a test name), use the term as defined in the glossary. Don't drift to synonyms the glossary explicitly avoids. If the concept you need isn't in the glossary yet, that's a signal: either you're inventing language the project doesn't use (reconsider) or there's a real gap (note it for `menu`).
 
 **Then open the entries the map lines call for, at every level, your own included.** An entry whose line bears on the work in hand is opened; one whose line does not stays closed. Decide on the whole line, title and summary together, and open the entry when the line does not settle it. What lives at your point and above binds it: what you skip, you skip on your own responsibility.
 
-**Level documents are read whole.** `structure.md` always; `rules.md` when you write code, since it holds the rules the code must obey.
+**The project's rules are read whole by whoever writes code**, since the code must obey them: `rules/general.md` always, `rules/design-system.md` when the work touches the interface.
 
 **An entry applies prescription by prescription.** Its scope is declared by its frontmatter and body, never by its title or filename: an entry about another module can still bind you, and one whose prescriptions are half off-topic still binds through the other half.
 

@@ -15,7 +15,7 @@ The input is the ticket's `recipe.md`, in the pantry's `core/tickets/pending/{pr
 
 ### 2. Explore the codebase (optional)
 
-If you have not already explored the codebase, do so to understand the current state of the code: `inventory` and `locate-stations` take you there. Task titles and descriptions should use the Terms vocabulary, and respect the decision entries in the area you're touching.
+If you have not already explored the codebase, do so to understand the current state of the code: `inventory` and `locate-stations` take you there. Task titles and descriptions should use the product's glossary vocabulary, and respect the decision entries in the area you're touching.
 
 Look for opportunities to prefactor the code to make the implementation easier. "Make the change easy, then make the easy change."
 

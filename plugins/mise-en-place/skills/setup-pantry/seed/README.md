@@ -14,7 +14,7 @@ Everything hangs from a precise place:
 
 - technical: project → module → feature
 - docs: product → module → feature → topic
-- tickets: `pending/` → product → code while the ticket is open, `served/` → product → code once it is implemented
+- tickets: `pending/` → product → code while the ticket is open, `served/` → product → code once it is implemented; `maps/` → product → code for a request split into tickets, each designed in a session of its own
 
 The names of those levels are registered in `config/vocabulary/`: projects in `projects.yaml`, products in `products.yaml`, each project's modules and features in `topology/{project}.yaml`, tags in `tags.yaml`. A name that is not there does not exist; registering one is a deliberate act.
 
@@ -26,11 +26,11 @@ Every level has a `map.md`: one line for each thing at that level, title and sum
 - `decisions/`: a choice made, and why
 - `patterns/`: a shape that repeats, and how to follow it
 
-A project also holds `rules.md`, its binding coding rules. A module holds `structure.md`, a snapshot of how it is built.
+A project also holds `rules/`: `general.md`, its binding coding rules, and `design-system.md`, its binding interface rules when it has an interface.
 
 ### Docs
 
-`overview.md` at product, module and feature level: what the words of its domain mean, and what the level does. `topics/{topic}/topic.md` at the leaf.
+A product holds `glossary.md`: what each word of its domain means, the one vocabulary for everything written about it. `overview.md` at product, module and feature level says what the level does; `topics/{topic}/topic.md` at the leaf.
 
 ### Tickets
 
@@ -38,13 +38,15 @@ One folder per ticket:
 
 ```
 {code}/
-├── order.md        the order: the ticket as it was asked
+├── order.md        the order: the ticket as it was asked, and its design when take-order designed it
 ├── recipe.md       the spec, written by recipe
 ├── prep-list/      the tasks, one file each, written by prep-list
 └── bill.md         the closing, written by bill
 ```
 
 Where a ticket stands is read from where its folder sits and what it holds: `recipe.md` means it is specced, `prep-list/` that it is planned, `bill.md` that it is closed. `served/` means implemented, not released to production.
+
+A ticket map, `maps/{product}/{code}/map.md`, holds together the tickets of a request too big for one session: each one's state, and what it depends on.
 
 ## How it is read and written
 

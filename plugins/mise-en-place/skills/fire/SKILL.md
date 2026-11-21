@@ -7,7 +7,7 @@ Implement the work described in the ticket's recipe and in the task.
 
 The task is a file in the ticket's `prep-list/`, under the pantry's `core/tickets/pending/{product}/{code}/`; the recipe is the `recipe.md` beside it. State the task's title before starting. If the reference is ambiguous, ask.
 
-Before writing code, read the project's `rules.md` in the pantry, `core/technical/{project}/rules.md`: its rules are binding, and `passe` checks the diff against them. That file and nothing else from the pantry: the entries that bear on this work came through the recipe.
+Before writing code, read the project's rules in the pantry, `core/technical/{project}/rules/`: `general.md` always, `design-system.md` when the task touches the interface. They are binding, and `passe` checks the diff against them. Those files and nothing else from the pantry: the entries that bear on this work came through the recipe.
 
 Go into the code through `locate-stations`. The recipe settled the design, not every symbol you are about to touch.
 

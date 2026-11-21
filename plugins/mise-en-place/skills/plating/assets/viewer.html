@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup - {{TITLE}}</title>
+<style>
+  /* The viewer around the product: two fixed bars, neobrutalist, the same in every format. */
+  :root { --ink: #111; --paper: #fffdf5; --accent: #ffd23f; --on: #3bceac; --bar: 56px; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #e9e6dc; font-family: "Arial Black", "Segoe UI", Arial, sans-serif; color: var(--ink); }
+  .nb-bar { position: fixed; left: 0; right: 0; height: var(--bar); z-index: 10; display: flex; align-items: center; gap: 16px;
+    padding: 0 16px; background: var(--paper); border-color: var(--ink); border-style: solid; border-width: 0; }
+  .nb-bar[hidden] { display: none; }
+  .nb-top { top: 0; border-bottom-width: 3px; display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+  .nb-lead { display: flex; align-items: center; gap: 16px; min-width: 0; }
+  .nb-bottom { bottom: 0; border-top-width: 3px; justify-content: center; }
+  .nb-tag { flex: none; padding: 4px 10px; background: var(--accent); border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); font-size: 13px; text-transform: uppercase; }
+  .nb-question { flex: 1 1 0; min-width: 0; font: 600 13px/1.3 "Segoe UI", Arial, sans-serif; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  /* On a narrow window the question gives its place to the formats; it stays in the tag's tooltip. */
+  @media (max-width: 900px) { .nb-question { display: none; } }
+  .nb-formats { flex: none; display: flex; gap: 12px; justify-content: center; }
+  .nb-formats[hidden], .nb-btn[hidden] { display: none; }
+  .nb-btn { padding: 6px 14px; background: #fff; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); font: 800 13px "Segoe UI", Arial, sans-serif;
+    cursor: pointer; text-transform: uppercase; }
+  .nb-btn:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 var(--ink); }
+  .nb-btn.nb-on { background: var(--on); transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+  .nb-cond { display: flex; align-items: center; gap: 8px; font: 800 12px "Segoe UI", Arial, sans-serif; text-transform: uppercase; }
+  .nb-cond select { font: 700 13px "Segoe UI", Arial, sans-serif; padding: 4px 8px; border: 3px solid var(--ink); background: #fff; box-shadow: 3px 3px 0 var(--ink); }
+
+  .nb-stage { position: fixed; top: var(--bar); bottom: 0; left: 0; right: 0; display: flex; align-items: flex-start; justify-content: center; overflow-x: hidden; overflow-y: auto; padding: 16px; }
+  body.nb-has-conditions .nb-stage { bottom: var(--bar); }
+  /* Tablet and mobile: the device upright on the left, turned on its side on the right. */
+  .nb-pair { flex: none; display: flex; align-items: flex-start; gap: 24px; transform-origin: top center; }
+  .nb-slot { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .nb-device { border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); background: #fff; }
+  .nb-device iframe { display: block; border: 0; background: #fff; }
+  /* Desktop fills the whole space between the bars, as the application fills the window. */
+  body.nb-desktop .nb-stage { padding: 0; overflow: hidden; }
+  body.nb-desktop .nb-pair, body.nb-desktop .nb-slot, body.nb-desktop .nb-device { flex: 1 1 auto; align-self: stretch; transform: none; }
+  body.nb-desktop .nb-device { border: 0; box-shadow: none; }
+  body.nb-desktop .nb-device iframe { width: 100%; height: 100%; }
+  body.nb-desktop .nb-label, body.nb-desktop .nb-landscape { display: none; }
+</style>
+</head>
+<body>
+<div class="nb-bar nb-top">
+  <div class="nb-lead">
+    <span class="nb-tag" title="{{QUESTION}}">Example data</span>
+    <span class="nb-question">{{QUESTION}}</span>
+  </div>
+  <div class="nb-formats">
+    <button class="nb-btn" data-format="desktop">Desktop</button>
+    <button class="nb-btn" data-format="tablet">Tablet</button>
+    <button class="nb-btn" data-format="mobile">Mobile</button>
+  </div>
+</div>
+<div class="nb-stage">
+  <div class="nb-pair">
+    <div class="nb-slot"><span class="nb-tag nb-label">Upright</span><div class="nb-device"><iframe id="nb-portrait" title="{{TITLE}}"></iframe></div></div>
+    <div class="nb-slot nb-landscape"><span class="nb-tag nb-label">On its side</span><div class="nb-device"><iframe id="nb-landscape" title="{{TITLE}}"></iframe></div></div>
+  </div>
+</div>
+<div class="nb-bar nb-bottom" id="nb-conditions" hidden></div>
+
+<script>
+  // Conditions that change the screen, each with its options; an empty list hides the bottom bar.
+  // Every page receives the chosen values as window.onMockupConditions(values), at load and at every change.
+  const CONDITIONS = {{CONDITIONS}};
+  // The formats the mockup is designed in: only those are shown, and with one alone its button goes too.
+  const DESIGNED = {{FORMATS}};
+  // The product page - the frame with the screen inside - as one string. It runs inside each iframe.
+  const PAGE = {{PAGE}};
+  // Desktop takes the whole stage; tablet and mobile show the device upright and on its side.
+  const FORMATS = { desktop: null, tablet: [768, 1024], mobile: [390, 844] };
+
+  const portrait = document.getElementById('nb-portrait');
+  const landscape = document.getElementById('nb-landscape');
+  const pair = document.querySelector('.nb-pair');
+  const values = {};
+  CONDITIONS.forEach(c => { values[c.id] = c.options[0].value; });
+
+  function send(frame) {
+    const w = frame.contentWindow;
+    if (w && typeof w.onMockupConditions === 'function') w.onMockupConditions(Object.assign({}, values));
+  }
+  function sendAll() { send(portrait); if (landscape.srcdoc) send(landscape); }
+
+  let current = 'desktop';
+  // The pair fits the width of the stage; a pair taller than the stage scrolls.
+  function fit() {
+    const size = FORMATS[current];
+    if (!size) { pair.style.transform = ''; pair.style.marginBottom = ''; return; }
+    const stage = pair.parentElement;
+    const [w, h] = size;
+    const needW = (w + 6) + (h + 6) + 24;      // upright, gap, on its side
+    const scale = Math.min(1, (stage.clientWidth - 32) / needW);
+    pair.style.transform = 'scale(' + scale + ')';
+    pair.style.marginBottom = (pair.offsetHeight * (scale - 1)) + 'px';
+  }
+  function show(format) {
+    current = format;
+    const size = FORMATS[format];
+    document.body.classList.toggle('nb-desktop', !size);
+    portrait.style.width = size ? size[0] + 'px' : '';
+    portrait.style.height = size ? size[1] + 'px' : '';
+    // Each format opens the page afresh at its own size, as on that device: what the page decides on load holds.
+    portrait.srcdoc = GUARDED;
+    if (size) {
+      landscape.style.width = size[1] + 'px';
+      landscape.style.height = size[0] + 'px';
+      landscape.srcdoc = GUARDED;
+    }
+    document.querySelectorAll('[data-format]').forEach(b => b.classList.toggle('nb-on', b.dataset.format === format));
+    fit();
+  }
+  document.querySelectorAll('[data-format]').forEach(b => {
+    b.hidden = !DESIGNED.includes(b.dataset.format);
+    b.addEventListener('click', () => show(b.dataset.format));
+  });
+  document.querySelector('.nb-formats').hidden = DESIGNED.length < 2;
+  window.addEventListener('resize', fit);
+
+  if (CONDITIONS.length) {
+    const bar = document.getElementById('nb-conditions');
+    bar.hidden = false;
+    document.body.classList.add('nb-has-conditions');
+    CONDITIONS.forEach(c => {
+      const label = document.createElement('label');
+      label.className = 'nb-cond';
+      label.textContent = c.label;
+      const sel = document.createElement('select');
+      c.options.forEach(o => { const opt = document.createElement('option'); opt.value = o.value; opt.textContent = o.label; sel.appendChild(opt); });
+      sel.addEventListener('change', () => { values[c.id] = sel.value; sendAll(); });
+      label.appendChild(sel);
+      bar.appendChild(label);
+    });
+  }
+
+  // Inside an iframe, an empty link or a form resolves against this file and would load the viewer in it:
+  // each page keeps such clicks and submits to itself.
+  const GUARD = '<script>document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");'
+    + 'if(a){var h=a.getAttribute("href");if(h===null||h===""||h.charAt(0)==="#"||/^javascript:/i.test(h))e.preventDefault();}},true);'
+    + 'document.addEventListener("submit",function(e){e.preventDefault();},true);<\/script>';
+  const GUARDED = /<head[^>]*>/i.test(PAGE) ? PAGE.replace(/<head[^>]*>/i, m => m + GUARD) : GUARD + PAGE;
+
+  portrait.addEventListener('load', () => send(portrait));
+  landscape.addEventListener('load', () => send(landscape));
+  show(Object.keys(FORMATS).find(f => DESIGNED.includes(f)));
+</script>
+</body>
+</html>

@@ -11,21 +11,8 @@ last_verified:      # YYYY-MM-DD
 
 # {name}
 
-## Terms
-<!-- optional: what the words of this level's domain mean: what each thing IS, not what it does. One entry per term:
-
-**Order**:
-A request a customer places for goods.
-_Avoid_: Purchase, transaction
-
-- Be opinionated. When multiple words exist for the same concept, pick the best one and list the others under _Avoid_.
-- Keep definitions tight. One or two sentences max. Define what it IS, not what it does.
-- Only include terms specific to this project's context. General programming concepts (timeouts, error types, utility patterns) don't belong even if the project uses them extensively. Before adding a term, ask: is this a concept unique to this context, or a general programming concept? Only the former belongs.
-- Group terms under ### subheadings when natural clusters emerge. If all terms belong to a single cohesive area, a flat list is fine.
-- A term sits in the lowest overview that covers every place it is used. -->
-
 ## What it does
-<!-- required: what this level DOES, not what it is, from the user's point of view. Use the terms of this overview and of those above it, never redefine them. -->
+<!-- required: what this level does, from the user's point of view. Use the terms of the product's glossary, never redefine them. -->
 
 ## Contents
 <!-- required: the levels below, one line each -->

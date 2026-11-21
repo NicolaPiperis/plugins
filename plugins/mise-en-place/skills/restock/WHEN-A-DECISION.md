@@ -24,6 +24,6 @@ If a decision is easy to reverse, skip it: you'll just reverse it. If it's not s
 
 ## What goes elsewhere
 
-- **A rule the code must obey** goes in the project's `rules.md`. A decision explains why the system is as it is; a rule says what your code must do.
+- **A rule the code must obey** goes in the project's `rules/`. A decision explains why the system is as it is; a rule says what your code must do.
 - **A trap that bites at runtime** is a gotcha. Nobody decided it.
 - **A choice that matters only to one ticket** stays in the ticket's recipe.

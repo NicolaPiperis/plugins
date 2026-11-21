@@ -10,9 +10,9 @@
 ## Features
 <!-- module level: - [name](features/name/map.md) — summary -->
 
-## Structure
-<!-- project: - [rules.md](rules.md) — binding coding rules
-     module:  - [structure.md](structure.md) — how the module is built -->
+## Rules
+<!-- project level: - [general.md](rules/general.md) — binding coding rules
+                    - [design-system.md](rules/design-system.md) — binding interface rules, in a project with an interface -->
 
 ## Decisions
 <!-- - [decision-slug](decisions/decision-slug.md) — summary -->

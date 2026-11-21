@@ -1,12 +1,13 @@
 ---
 name: locate-stations
-description: Locate a pantry project on this machine and read its code: resolve its local path, keep the project-to-path map, find symbols with the right tool. Use whenever a project's code has to be found, opened or read, and when the user adds, edits or lists the paths.
+description: Locate the active pantry and its projects on this machine, and read their code: resolve the pantry and each project's local path, keep the project-to-path map, find symbols with the right tool. Use whenever the pantry or a project's code has to be found, opened or read, and when the user adds, edits or lists the paths.
 ---
 
 # Locate stations
 
-`locate-stations` is the map between the **projects of the pantry**, the stations of the brigade, and their **local paths on this machine**. It has three faces:
+`locate-stations` is the map between the **pantry and its projects**, the stations of the brigade, and their **local paths on this machine**. It has four faces:
 
+- **The pantry**: which pantry is active, and where it sits.
 - **Lookup**, the main use, called by other skills or by you: returns a project's path.
 - **Reading**: how to find symbols in the code once you are there.
 - **Management**, on the user's request: add, edit or list the paths.
@@ -15,19 +16,28 @@ Why it exists: local paths differ from machine to machine and from user to user,
 
 ## Where the data lives
 
-In the pointer, `~/.claude/brigade.yaml`, under `projects`:
+In the pointer, `~/.claude/brigade.yaml`. `pantry` names the active pantry; under `pantries`, each known pantry has its folder and its projects:
 
 ```yaml
-pantry: C:/path/to/pantry
-projects:
-  shelfwise: C:/path/to/shelfwise
+pantry: nick-pantry
+pantries:
+  nick-pantry:
+    path: C:/path/to/nick-pantry
+    projects:
+      shelfwise: C:/path/to/shelfwise
 ```
 
-The keys are the projects registered in the pantry's `config/vocabulary/projects.yaml`. With no pointer there is no pantry yet: tell the user to run `/setup-pantry` and stop.
+The projects are those of the active pantry: the keys registered in its `config/vocabulary/projects.yaml`. The other pantries' projects stay as they are.
+
+## The pantry: finding it
+
+The active pantry is the folder at `pantries.<pantry>.path`. With no pointer, or a folder without `pantry.yaml`, stop and tell the user to run `/setup-pantry`.
+
+The first time in a session, say in one line which pantry is in use: `pantry: nick-pantry`. To work on another, the user switches it with `/setup-pantry`.
 
 ## Reconcile: every time the pointer is read
 
-Compare the keys under `projects` with the vocabulary:
+Compare the keys under the active pantry's `projects` with its vocabulary:
 
 | Key in the pointer | What to do |
 |---|---|
@@ -42,7 +52,7 @@ A path is never lost. When nothing differs, leave the pointer untouched.
 2. Look for the project asked for.
 3. Three outcomes:
    - **Mapped** → return the path.
-   - **Registered but not mapped** → ask the user for its path, once, validate it (below), write it under `projects`, and return it.
+   - **Registered but not mapped** → ask the user for its path, once, validate it (below), write it under the active pantry's `projects`, and return it.
    - **Not registered** → answer that the pantry does not know the project. Registering a name in the vocabulary is a deliberate act, done through `restock`.
 
 Done when the caller holds a path, or knows the project is not registered.

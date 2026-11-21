@@ -34,7 +34,7 @@ Look for what the work was supposed to do, in this order:
 
 ### 3. Identify the standards sources
 
-The project's coding rules are its `rules.md` in the pantry, `core/technical/{project}/rules.md`, with `{project}` as `config/vocabulary/projects.yaml` names it. On top of it, search the repo for every file that documents how code should be written. When `CODING_STANDARDS.md` or `CONTRIBUTING.md` exists, it must be on the list.
+The project's coding rules are its `rules/` in the pantry, `core/technical/{project}/rules/`, with `{project}` as `config/vocabulary/projects.yaml` names it: `general.md`, and `design-system.md` when the diff touches the interface. On top of them, search the repo for every file that documents how code should be written. When `CODING_STANDARDS.md` or `CONTRIBUTING.md` exists, it must be on the list.
 
 On top of whatever the project documents, the Standards axis always carries the **smell baseline** below: a fixed set of Fowler code smells (_Refactoring_, ch.3) that applies even when a repo documents nothing. Two rules bind it:
 

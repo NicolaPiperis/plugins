@@ -1,6 +1,6 @@
 ---
 name: chefs-table
-description: "Guided manual validation of a ticket you have just implemented: designs the test cases, walks you through them one at a time at the screen, and judges each outcome. Run once every numbered task of the prep list is done."
+description: "Validate a ticket you have just implemented, by hand and with you at the screen: design the test cases, walk through them one at a time, judge each outcome. Run once every numbered task of the prep list is done."
 disable-model-invocation: true
 ---
 

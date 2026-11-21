@@ -11,7 +11,7 @@ Surface architectural friction and propose **deepening opportunities**: refactor
 This command is _informed_ by the project's domain model and built on a shared design vocabulary:
 
 - Call the Skill tool with "mise-en-place:partie" for the architecture vocabulary (**module**, **interface**, **depth**, **seam**, **adapter**, **leverage**, **locality**) and its principles (the deletion test, "the interface is the test surface", "one adapter = hypothetical seam, two = real"). Use these terms exactly in every suggestion, and don't drift into "component," "service," "API," or "boundary."
-- The domain language in the Terms gives names to good seams; the decision entries in the pantry record decisions this command should not re-litigate.
+- The domain language in the product's glossary gives names to good seams; the decision entries in the pantry record decisions this command should not re-litigate.
 
 ## Process
 
@@ -22,7 +22,7 @@ This command is _informed_ by the project's domain model and built on a shared d
 - If the user named a direction (a module, a subsystem, a pain point), take it, and skip the inference below.
 - Otherwise, walk back a good stretch of the commit history (`git log --oneline`) to find the codebase's hot spots, the files and areas that keep coming up, and let those paths pull your attention first. If the changes are scattered with no clear hot spot, widen the net.
 
-Read the pantry with `inventory` for the area you're touching first: the Terms, the decision entries, `structure.md`. A gotcha entry marks friction that is a known trap, not a design flaw.
+Read the pantry with `inventory` for the area you're touching first: the product's glossary and the decision entries. A gotcha entry marks friction that is a known trap, not a design flaw.
 
 Then spawn a sub-agent to walk the codebase. Don't follow rigid heuristics; explore organically and note where you experience friction:
 
@@ -51,7 +51,7 @@ For each candidate, render a card with:
 
 End the report with a **Top recommendation** section: which candidate you'd tackle first and why.
 
-**Use the Terms vocabulary for the domain, and the `partie` vocabulary for the architecture.** If the Terms define "Order," talk about "the Order intake module," not "the FooBarHandler," and not "the Order service."
+**Use the glossary vocabulary for the domain, and the `partie` vocabulary for the architecture.** If the glossary defines "Order," talk about "the Order intake module," not "the FooBarHandler," and not "the Order service."
 
 **Decision conflicts**: if a candidate contradicts an existing decision entry, only surface it when the friction is real enough to warrant revisiting the decision. Mark it clearly in the card (e.g. a warning callout: _"contradicts decision-<slug>, but worth reopening because…"_). Don't list every theoretical refactor a decision forbids.
 
@@ -65,7 +65,7 @@ Once the user picks a candidate, call the Skill tool with "mise-en-place:grillin
 
 Side effects happen inline as decisions crystallize; call the Skill tool with "mise-en-place:menu" to keep the domain model current as you go:
 
-- **Naming a deepened module after a concept not in the Terms?** Add the term to the Terms.
-- **Sharpening a fuzzy term during the conversation?** Update the Terms right there.
+- **Naming a deepened module after a concept not in the glossary?** Add the term to the glossary.
+- **Sharpening a fuzzy term during the conversation?** Update the glossary right there.
 - **User rejects the candidate with a load-bearing reason?** Offer a decision entry, through `restock`, framed as: _"Want me to record this as a decision so future architecture reviews don't re-suggest it?"_ Only offer when the reason would actually be needed by a future explorer to avoid re-suggesting the same thing; skip ephemeral reasons ("not worth it right now") and self-evident ones.
 - **Want to explore alternative interfaces for the deepened module?** Call the Skill tool with "mise-en-place:partie" and use its design-it-twice parallel sub-agent pattern.
