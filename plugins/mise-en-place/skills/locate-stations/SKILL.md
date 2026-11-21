@@ -16,7 +16,7 @@ Why it exists: local paths differ from machine to machine and from user to user,
 
 ## Where the data lives
 
-In the pointer, `~/.claude/brigade.yaml`. `pantry` names the active pantry; under `pantries`, each known pantry has its folder and its projects:
+In the pointer, `~/.claude/mise-en-place.yaml`. `pantry` names the active pantry; under `pantries`, each known pantry has its folder and its projects:
 
 ```yaml
 pantry: nick-pantry

@@ -11,7 +11,7 @@ The **pantry** is the knowledge base the mise-en-place skills read from and writ
 Two files tie it together:
 
 - **`pantry.yaml`**, at the pantry root, describes the pantry. Its presence is what makes a folder a pantry.
-- **The pointer**, `~/.claude/brigade.yaml`, tells the skills which pantry is active and where each known pantry sits. It is personal: each user has their own.
+- **The pointer**, `~/.claude/mise-en-place.yaml`, tells the skills which pantry is active and where each known pantry sits. It is personal: each user has their own.
 
 This skill writes the pantry and the pointer. It is prompt-driven: explore, present what you found, confirm with the user, then write.
 
@@ -25,7 +25,7 @@ Read the pointer.
 - **Its active pantry is a folder without a `pantry.yaml`, or a folder that is gone**: tell the user, then go on to step 2.
 - **There is no pointer**: go on to step 2.
 
-A pointer in the old shape, a bare `pantry: <path>` with no `pantries`, is rewritten in the shape of step 4 first, keeping its path and its projects, and the user is told.
+A pointer from an earlier version is brought up to date first, and the user is told: one at `~/.claude/brigade.yaml` moves to `~/.claude/mise-en-place.yaml`; one in the old shape, a bare `pantry: <path>` with no `pantries`, is rewritten in the shape of step 4, keeping its path and its projects.
 
 Done when you know which of the three cases applies.
 

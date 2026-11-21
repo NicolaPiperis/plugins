@@ -1,6 +1,6 @@
 {
   "name": "mise-en-place",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A guided, human-in-the-loop development workflow backed by a personal knowledge base, the pantry: every ticket from the grill to the bill.",
   "author": {
     "name": "Nicola Piperis"
