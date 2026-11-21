@@ -82,7 +82,7 @@ Done when `pantry` names an entry whose `path` holds a `pantry.yaml`.
 
 ### 5. The glossary, in every conversation
 
-The skills read the product's glossary when they run, but a quick request runs no skill. So offer to add one line to the user's global instructions, `~/.claude/rules/mise-en-place.md`, which every conversation loads:
+The skills read the product's glossary when they run, but a quick request runs no skill. So offer to add one line to the user's global instructions, `~/.claude/rules/pantry-glossary.md`, which every conversation loads:
 
 > When your work names a domain concept, read the product's `glossary.md` in the active pantry through `mise-en-place:inventory`, and use its terms.
 
