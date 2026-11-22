@@ -22,7 +22,9 @@ Check with the user that these seams match their expectations.
 
 5. Write the recipe from the template `config/templates/tickets/recipe.md`, in the language the pantry is written in: haccp's block under `## Threat Model`, costing's under `## Estimate`, the guide comments stripped.
 
-Done when `recipe.md` is written with every required section of the template filled.
+6. Commit and push the pantry as [git.md](../restock/git.md) in `restock` says.
+
+Done when `recipe.md` is written with every required section of the template filled, and the user's answer on commit and push is carried out.
 
 ## Rules
 

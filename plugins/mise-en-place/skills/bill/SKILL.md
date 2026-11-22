@@ -38,7 +38,6 @@ Show the whole bill and wait for an explicit go-ahead: silence is not approval. 
 
 1. Set the `Status` of `prep-list/bill.md` to `done`.
 2. Move the ticket's folder from `pending/` to `core/tickets/served/{product}/{code}/`.
-3. Commit the pantry, adding by path the files this ticket wrote; anything else uncommitted stays out, and you say so. Subject `{code} - bill`, with the ticket's code, or its title when it has none; the body lists what entered the pantry: entries, rules, glossary, docs.
-4. Push to the pantry's current branch. When the push is rejected, `git pull --rebase --autostash`, then push again.
+3. Commit and push the pantry as [git.md](../restock/git.md) in `restock` says.
 
-Done when the push has gone through.
+Done when the ticket sits in `served/` and the user's answer on commit and push is carried out.

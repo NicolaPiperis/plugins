@@ -84,8 +84,14 @@ Avoid specific file paths or code snippets: they go stale fast. Exception: if a 
 
 Done when every task the user approved has its file.
 
+### 6. Commit and push
+
+Commit and push the pantry as [git.md](../restock/git.md) in `restock` says.
+
+Done when the user's answer on commit and push is carried out.
+
 ## Fixes from the validation
 
 When `chefs-table` sends work back (a case that failed, or something no task covered), each behaviour to put right becomes a new task, the trivial ones together. It takes the next free number after the highest in `prep-list/`; a number once given stays with its task. The named tasks are already blocked by every numbered task, so the new ones sit ahead of them as they are.
 
-Run steps 3 to 5 for the new tasks alone. Where the fix shows the recipe missed something, bring `recipe.md` up to date as well.
+Run steps 3 to 6 for the new tasks alone. Where the fix shows the recipe missed something, bring `recipe.md` up to date as well.

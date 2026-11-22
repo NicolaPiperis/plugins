@@ -4,7 +4,7 @@
     "name": "Nicola Piperis"
   },
   "description": "Nicola Piperis's Claude Code plugins.",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "plugins": [
     {
       "name": "mise-en-place",

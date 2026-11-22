@@ -111,6 +111,10 @@ A name an entry needs is registered, never coined inside the entry. First check 
 
 An entry rises a level when it holds for two or more units of the level below. **Propose** it and wait for the go. The highest level is the project. A promoted entry keeps its type: a gotcha at project level is still a gotcha.
 
+## 9. Commit and push
+
+Before any commit or push to the pantry, read [git.md](./git.md) beside this skill, and follow it.
+
 ## What to save
 
 - **A gotcha or a pattern** is saved only when all four hold: a genuine discovery rather than official documentation, useful in six months, verified behaviour, a clear trigger for consulting it. Every claim in it is checked before it is proposed, against what this machine holds: the code, a library. What you could not check stays out.
@@ -120,4 +124,4 @@ Leave out ordinary bug fixes already in the ticket, volatile details, session lo
 
 ## Boundaries
 
-You write files in the pantry, and read code and data only to check a claim. Committing is left to `bill`, at the close of a ticket, or to the user.
+You write files in the pantry, read code and data only to check a claim, and run git as [git.md](./git.md) says.
